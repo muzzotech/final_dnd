@@ -3,8 +3,7 @@
 
 //Dice Rolls
 var statRoll = function() {
-	var statRoll2 = (1 + Math.floor(6 * Math.random())) + (1 + Math.floor(6 * Math.random())) + (1 + Math.floor(6 * Math.random()));
-	return statRoll2;
+	return (1 + Math.floor(6 * Math.random())) + (1 + Math.floor(6 * Math.random())) + (1 + Math.floor(6 * Math.random()));
 }
 
 //Stat Ability modifiers based on what was rolled for each stat
@@ -13,8 +12,73 @@ function calcMod(s){
 	return Math.floor(s / 2) - 5;
 }
 
+//XP & Level
 var level = parseInt(document.getElementById("level").value);
-var proficiency;
+var XP = parseInt(document.getElementById("XP").value);
+
+function XPlevel() {
+	if((XP >= 0 && XP < 300) && level === 1) {
+		level = 1;
+	} else if ((XP >= 300 && XP <900) || level === 2) {
+		level = 2;
+	} else if ((XP >= 900 && XP <2700) || level ===3) {
+		level = 3;
+	} else if ((XP >= 2700 && XP < 6500) || level === 4){
+		level = 4;
+	} else if ((XP >= 6500 & XP < 14000) || level === 5){
+		level = 5;
+	} else if ((XP >= 14000 && XP < 23000) || level === 6) {
+		level = 6;
+	} else if ((XP >= 23000 && XP < 34000) || level === 7) {
+		level = 7;
+	} else if ((XP >= 34000 && XP < 48000) || level === 8) {
+		level = 8;
+	} else if ((XP >= 48000 && XP < 64000) || level === 9) {
+		level = 9;
+	} else if ((XP >= 64000 && XP < 85000) || level === 10) {
+		level = 10;
+	} else if ((XP >= 85000 && XP < 100000) || level === 11) {
+		level = 11;
+	} else if ((XP >= 100000 && XP < 120000) || level === 12) {
+		level = 12;
+	} else if ((XP >= 120000 && XP < 140000) || level === 13) {
+		level = 13;
+	} else if ((XP >= 140000 && XP < 165000) || level === 14) {
+		level = 14;
+	} else if ((XP >= 165000 && XP < 195000) || level === 15) {
+		level = 15;
+	} else if ((XP >= 195000 && XP < 225000) || level === 16) {
+		level = 16;
+	} else if ((XP >= 225000 && XP < 265000) || level === 17) {
+		level = 17;
+	} else if ((XP >= 265000 && XP < 305000) || level === 18) {
+		level = 18;
+	} else if ((XP >= 305000 && XP < 355000) || level === 19) {
+		level = 19;
+	} else {
+		level = 20;
+	}
+
+	return level;
+}
+
+//proficiency
+function proficiency(level) {
+	var result;
+	if (level >= 1 && level < 5) {
+	result = 2;
+	} else if (level >= 5 && level < 9) {
+	result = 3;
+	} else if (level >= 9 && level < 13){
+	result = 4;
+	} else if (level >= 13 && level < 17) {
+	result = 5;
+	} else if (level >= 17 && level <= 20) {
+	result = 6;
+	}
+
+	return result;
+};
 
 //beast master
 
@@ -151,6 +215,69 @@ function beastMaster() {
 		}
 		return level;
 	}
+
+//function for skills
+
+function skills(){
+	var skill = prompt("Name a skill you'd wish to augment?");
+	switch(skill){
+		case 'acrobatics':
+			acrobatics++;
+			break;
+		case 'animal handling':
+			animalHandling++;
+			break;
+		case 'arcana':
+			arcana++;
+			break;
+		case 'athletics':
+			athletics++;
+			break;
+		case 'deception':
+			deception++;
+			break;
+		case 'history':
+			history++;
+			break;
+		case 'insight':
+			insight++;
+			break;
+		case 'intimidation':
+			intimidation++;
+			break;
+		case 'investigation':
+			investigation++;
+			break;
+		case 'medicine':
+			medicine++;
+			break;
+		case 'nature':
+			nature++;
+			break;
+		case 'perception':
+			perception++;
+			break;
+		case 'performance':
+			performance++;
+			break;
+		case 'persuasion':
+			persuasion++;
+			break;
+		case 'religion':
+			religion++;
+			break;
+		case 'sleight of hand':
+			sleightOfHand++;
+			break;
+		case 'stealth':
+			stealth++;
+			break;
+		case 'survival':
+			survival++;
+			break;
+	}
+}
+
 
 //function for feats
 
@@ -487,109 +614,50 @@ var charisma = chamod;
 //var level = parseInt(document.getElementById("level").value);
 
 var rogueDice = 8 + conmod;
-for (var i = 2; i<=level; i++) {
-	var rogueDie = (1 + Math.floor(8 * Math.random()));
-	if ((rogueDie + conmod) < 1){
-		rogueDice += 1
-	} else {
-		rogueDice += rogueDie + conmod;
+var rogueDie = (1 + Math.floor(8 * Math.random()));
+function rogue(){
+	for (var i = 2; i<=level; i++) {
+		if ((rogueDie + conmod) < 1){
+			rogueDice += 1
+		} else {
+			rogueDice += rogueDie + conmod;
+		}
 	}
+	return rogueDice;
 }
 
 var wizardDice = 6 + conmod;
-for (var i = 2; i<=level; i++) {
-	var wizardDie = (1 + Math.floor(6 * Math.random()));
-	if ((wizardDie + conmod) < 1) {
-		wizardDice +=1
-	} else {
-		wizardDice += wizardDie + conmod;
+var wizardDie = (1 + Math.floor(6 * Math.random()));
+function wizard(){
+	for (var i = 2; i<=level; i++) {
+		if ((wizardDie + conmod) < 1) {
+			wizardDice +=1
+		} else {
+			wizardDice += wizardDie + conmod;
+		}
 	}
+	return wizardDice;
 }
 
 var fighterDice = 10 + conmod;
-for (var i = 2; i<=level; i++) {
-	var fighterDie = (1 + Math.floor(10 * Math.random()));
-	if((fighterDie + conmod) < 1) {
-		fighterDice +=1
-	} else {
-		fighterDice += fighterDie + conmod;	
+var fighterDie = (1 + Math.floor(10 * Math.random()));
+function fighter() {
+	for (var i = 2; i<=level; i++) {
+		if((fighterDie + conmod) < 1) {
+			fighterDice +=1
+		} else {
+			fighterDice += fighterDie + conmod;	
+		}
 	}
+	return fighterDice;
 }
 
 var XP = parseInt(document.getElementById("XP").value);
+var level = parseInt(document.getElementById("level").value);
 
-if(XP >= 0 && XP < 300) {
-	level = 1;
-} else if (XP >= 300 && XP <900) {
-	level = 2;
-	document.getElementById("level").value = 2;
-} else if (XP >= 900 && XP <2700) {
-	level = 3;
-	document.getElementById("level").value = 3;
-} else if (XP >= 2700 && XP < 6500) {
-	level = 4;
-	document.getElementById("level").value = 4;
-} else if (XP >= 6500 & XP < 14000) {
-	level = 5;
-	document.getElementById("level").value = 5;
-} else if (XP >= 14000 && XP < 23000) {
-	level = 6;
-	document.getElementById("level").value = 6;
-} else if (XP >= 23000 && XP < 34000) {
-	level = 7;
-	document.getElementById("level").value = 7; 
-} else if (XP >= 34000 && XP < 48000) {
-	level = 8;
-	document.getElementById("level").value = 8;
-} else if (XP >= 48000 && XP < 64000) {
-	level = 9;
-	document.getElementById("level").value = 9;
-} else if (XP >= 64000 && XP < 85000) {
-	level = 10;
-	document.getElementById("level").value = 10;
-} else if (XP >= 85000 && XP < 100000) {
-	level = 11;
-	document.getElementById("level").value = 11;
-} else if (XP >= 100000 && XP < 120000) {
-	level = 12;
-	document.getElementById("level").value = 12;
-} else if (XP >= 120000 && XP < 140000) {
-	level = 13;
-	document.getElementById("level").value = 13;
-} else if (XP >= 140000 && XP < 165000) {
-	level = 14;
-	document.getElementById("level").value = 14;
-} else if (XP >= 165000 && XP < 195000) {
-	level = 15;
-	document.getElementById("level").value = 15;
-} else if (XP >= 195000 && XP < 225000) {
-	level = 16;
-	document.getElementById("level").value = 16;
-} else if (XP >= 225000 && XP < 265000) {
-	level = 17;
-	document.getElementById("level").value = 17;
-} else if (XP >= 265000 && XP < 305000) {
-	level = 18;
-	document.getElementById("level").value = 18;
-} else if (XP >= 305000 && XP < 355000) {
-	level = 19;
-	document.getElementById("level").value = 19;
-} else {
-	level = 20;
-	document.getElementById("level").value = 20;
-}
+XPlevel();
 
-if (level >= 1 && level < 5) {
-	proficiency = 2;
-} else if (level >= 5 && level < 9) {
-	proficiency = 3;
-} else if (level >= 9 && level < 13){
-	proficiency = 4;
-} else if (level >= 13 && level < 17) {
-	proficiency = 5;
-} else if (level >= 17 && level <= 20) {
-	proficiency = 6;
-}
+var prof = proficiency(level);
 
 //armor class
 var armor = document.getElementById("armor").value;
@@ -662,12 +730,12 @@ var type = document.getElementById("type").value;
 var hitPoints;
 switch (type) {
 	case 'Fighter' :
-		hitPoints = fighterDice;
+		hitPoints = fighter();
 		strability = strability + 2;
 		dexability = dexability + 2;
 		break;
 	case 'Ranger' :
-		hitPoints = fighterDice;
+		hitPoints = fighter();
 		dexability = dexability + 2;
 		wisability = wisability + 2;
 		if (level >= 1){
@@ -779,15 +847,15 @@ switch (type) {
 		}
 		break;
 	case 'Cleric' :
-		hitPoints = rogueDice;
+		hitPoints = rogue();
 		wisability = wisability + 2;
 		break;
 	case 'Wizard' :
-		hitPoints = wizardDice;
+		hitPoints = wizard();
 		intelability = intelability + 2;
 		break;
 	case 'Rogue' :
-		hitPoints = rogueDice;
+		hitPoints = rogue();
 		dexability = dexability + 2;
 		break;
 }
@@ -808,7 +876,7 @@ document.getElementById("Wis").value =  wis;
 document.getElementById("Cha").value =  cha;
 document.getElementById("HP").value =  hitPoints; 
 $("#column2").html("<h4>Strength mod <b>" + strmod + "</b></h4><h4>Dexterity mod <b>" + dexmod +"</b></h4><h4>Constitution mod <b>" + conmod + "</b></h4><h4>Intelligence mod <b>" + intelmod + "</b></h4><h4>Wisdom mod <b>"+ wismod + "</b></h4><h4>Charisma mod <b>" + chamod + "</b></h4><br><h4>AC <b>" + armorClass + "</b></h4><br><h4>Intiative " + initiative +"</h4>");
-$("#column3").html("<h4><b>Saving Throws</b></h4><h4><b>" + strength + "</b> Strength</h4><h4><b>"+ dexterity + "</b> Dexterity</h4><h4><b>" + constitution + "</b> Constitution</h4><h4><b>" + intelligence + "</b> Intelligence</h4><h4><b>" + wisdom + "</b> Wisdom</h4><h4><b>" + charisma + "</b> Charisma</h4><br><h4><b>" +proficiency + "</b> Proficiency</h4>");
+$("#column3").html("<h4><b>Saving Throws</b></h4><h4><b>" + strength + "</b> Strength</h4><h4><b>"+ dexterity + "</b> Dexterity</h4><h4><b>" + constitution + "</b> Constitution</h4><h4><b>" + intelligence + "</b> Intelligence</h4><h4><b>" + wisdom + "</b> Wisdom</h4><h4><b>" + charisma + "</b> Charisma</h4><br><h4><b>" +prof + "</b> Proficiency</h4>");
 $("#column4").html("<h4><b>" + acrobatics + "</b> Acrobratics </h4><h4><b>" + animalHandling + "</b> Animal Handling</h4><h4><b> " + arcana + "</b> Arcana</h4><h4><b>" + athletics + "</b> Athletics</h4><h4><b>" + deception + "</b> Deception</h4><h4><b>" + intelability + "</b> History</h4><h4><b>" + insight + "</b> Insight</h4><h4><b>" + intimidation + "</b> Intimidation</h4><h4><b>" + investigation + "</b> Investigation</h4>");
 $("#column5").html("<h4><b>" + medicine + "</b> Medicine</h4><h4><b>" + nature + "</b> Nature</h4><h4><b>" + perception + "</b> Perception</h4><h4><b>" + performance + "</b> Performance</h4><h4><b>" + persuasion + "</b> Persuasion</h4><h4><b>" + religion + "</b> Religion</h4><h4><b>" + sleightOfHand + "</b> Sleight of Hand</h4><h4><b>" + stealth + "</b> Stealth</h4><h4><b>" + survival + "</b> Survival</h4>");
 $("#level2").html("<h4>" + level2 + "</h4>");
@@ -849,83 +917,10 @@ var intelmod = calcMod(intel);
 var wismod = calcMod(wis);
 var chamod = calcMod(cha);
 
-//Hit Points
-var XP = parseInt(document.getElementById("XP").value);
+//Levels & Proficiency
+XPlevel();
+var prof = proficiency();
 
-if(XP >= 0 && XP < 300) {
-	level = 1;
-} else if (XP >= 300 && XP <900) {
-	level = 2;
-	document.getElementById("level").value = 2;
-} else if (XP >= 900 && XP <2700) {
-	level = 3;
-	document.getElementById("level").value = 3;
-} else if (XP >= 2700 && XP < 6500) {
-	level = 4;
-	document.getElementById("level").value = 4;
-} else if (XP >= 6500 & XP < 14000) {
-	level = 5;
-	document.getElementById("level").value = 5;
-} else if (XP >= 14000 && XP < 23000) {
-	level = 6;
-	document.getElementById("level").value = 6;
-} else if (XP >= 23000 && XP < 34000) {
-	level = 7;
-	document.getElementById("level").value = 7; 
-} else if (XP >= 34000 && XP < 48000) {
-	level = 8;
-	document.getElementById("level").value = 8;
-} else if (XP >= 48000 && XP < 64000) {
-	level = 9;
-	document.getElementById("level").value = 9;
-} else if (XP >= 64000 && XP < 85000) {
-	level = 10;
-	document.getElementById("level").value = 10;
-} else if (XP >= 85000 && XP < 100000) {
-	level = 11;
-	document.getElementById("level").value = 11;
-} else if (XP >= 100000 && XP < 120000) {
-	level = 12;
-	document.getElementById("level").value = 12;
-} else if (XP >= 120000 && XP < 140000) {
-	level = 13;
-	document.getElementById("level").value = 13;
-} else if (XP >= 140000 && XP < 165000) {
-	level = 14;
-	document.getElementById("level").value = 14;
-} else if (XP >= 165000 && XP < 195000) {
-	level = 15;
-	document.getElementById("level").value = 15;
-} else if (XP >= 195000 && XP < 225000) {
-	level = 16;
-	document.getElementById("level").value = 16;
-} else if (XP >= 225000 && XP < 265000) {
-	level = 17;
-	document.getElementById("level").value = 17;
-} else if (XP >= 265000 && XP < 305000) {
-	level = 18;
-	document.getElementById("level").value = 18;
-} else if (XP >= 305000 && XP < 355000) {
-	level = 19;
-	document.getElementById("level").value = 19;
-} else {
-	level = 20;
-	document.getElementById("level").value = 20;
-}
-
-var proficiency;
-
-if (level >= 1 && level < 5) {
-	proficiency = 2;
-} else if (level >= 5 && level < 9) {
-	proficiency = 3;
-} else if (level >= 9 && level < 13){
-	proficiency = 4;
-} else if (level >= 13 && level < 17) {
-	proficiency = 5;
-} else {
-	proficiency = 6;
-}
 //Adding variables for Ability Modifiers that will come into play later in the script.
 
 var dexability = dexmod + 1;
@@ -1167,7 +1162,7 @@ document.getElementById("name").innerHTML = "<h4><b>" + name + "</b></h4>"
 document.getElementById("main").innerHTML= "<h4><b>Level " + level + " " + race + " " + type + "</b></h4>";
 document.getElementById("skills").innerHTML = "<h4><b>Skills</b></h4>";
 document.getElementById("column2").innerHTML="<h4>Strength mod <b>" + strmod + "</b></h4><h4>Dexterity mod <b>" + dexmod +"</b></h4><h4>Constitution mod <b>" + conmod + "</b></h4><h4>Intelligence mod <b>" + intelmod + "</b></h4><h4>Wisdom mod <b>"+ wismod + "</b></h4><h4>Charisma mod <b>" + chamod + "</b></h4><br><h4>AC <b>" + armorClass + "</b></h4><br><h4>Intiative " + dexmod +"</h4>";
-document.getElementById("column3").innerHTML="<h4><b>Saving Throws</b></h4><h4><b>" + strength + "</b> Strength</h4><h4><b>"+ dexterity + "</b> Dexterity</h4><h4><b>" + constitution + "</b> Constitution</h4><h4><b>" + intelligence + "</b> Intelligence</h4><h4><b>" + wisdom + "</b> Wisdom</h4><h4><b>" + charisma + "</b> Charisma</h4><br><h4><b>" +proficiency + "</b> Proficiency</h4>";
+document.getElementById("column3").innerHTML="<h4><b>Saving Throws</b></h4><h4><b>" + strength + "</b> Strength</h4><h4><b>"+ dexterity + "</b> Dexterity</h4><h4><b>" + constitution + "</b> Constitution</h4><h4><b>" + intelligence + "</b> Intelligence</h4><h4><b>" + wisdom + "</b> Wisdom</h4><h4><b>" + charisma + "</b> Charisma</h4><br><h4><b>" +prof + "</b> Proficiency</h4>";
 document.getElementById("column4").innerHTML="<h4><b>" + acrobatics + "</b> Acrobratics </h4><h4><b>" + animalHandling + "</b> Animal Handling</h4><h4><b> " + arcana + "</b> Arcana</h4><h4><b>" + athletics + "</b> Athletics</h4><h4><b>" + deception + "</b> Deception</h4><h4><b>" + intelability + "</b> History</h4><h4><b>" + insight + "</b> Insight</h4><h4><b>" + intimidation + "</b> Intimidation</h4><h4><b>" + investigation + "</b> Investigation</h4>";
 document.getElementById("column5").innerHTML="<h4><b>" + medicine + "</b> Medicine</h4><h4><b>" + nature + "</b> Nature</h4><h4><b>" + perception + "</b> Perception</h4><h4><b>" + performance + "</b> Performance</h4><h4><b>" + persuasion + "</b> Persuasion</h4><h4><b>" + religion + "</b> Religion</h4><h4><b>" + sleightOfHand + "</b> Sleight of Hand</h4><h4><b>" + stealth + "</b> Stealth</h4><h4><b>" + survival + "</b> Survival</h4>";
 })
