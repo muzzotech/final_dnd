@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8">
+	<title>D&amp;D Character Sheet Generator</title>
+	<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<link href='https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC' rel='stylesheet' type='text/css'>
+	<style type = "text/css">
+		body {font-family: 'IM Fell DW Pica SC', serif;
+			background: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.6) 100%), url(ph-barroom-brawl.jpeg) repeat 0 0;}
+		.DND {
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<h1 class = "DND">5th Edition D&amp;D Character Generator</h1>
+	<div class = "col-md-12">
+		<h3>
+			<label>Name
+				<input type = "text" size = "50" id = "name2">
+			</label>
+		</h3>
+	</div>
+	<div class="col-md-2">
+		<h3>
+			<label>Level
+				<input type = "number" min="1" max="20" step = "1" value = "1" id = "level"/>				
+			</label>
+		</h3>
+	</div>
+	<div class="col-md-2">
+		<h3>
+			<label>XP
+				<input type = "number" min="0" max="355000" step = "1" value = "0" id = "XP"/>				
+			</label>
+		</h3>
+	</div>
+	<div class="col-md-2">
+		<h3>	
+			<label>Select a race
+				<select name="race" id="race">
+					<option>Human</option>
+					<option>Elf</option>
+					<option>Dwarf</option>
+					<option>Halfling</option>
+					<option>Half-Orc</option>
+					<option>Tiefling</option>
+				</select>
+			</label>
+		</h3>
+	</div>
+	<div class="col-md-2">
+		<h3>	
+			<label>Select a class
+				<select name="type" id ="type">
+					<option>Fighter</option>
+					<option>Ranger</option>
+					<option>Cleric</option>
+					<option>Wizard</option>
+					<option>Rogue</option>
+				</select>
+			</label>
+		</h3>
+	</div>
+		<div class="col-md-3">
+		<h3>
+			<label>Select your armor
+				<select name="armor" id="armor">
+					<option>Padded</option>
+					<option>Leather</option>
+					<option>Studded Leather</option>
+					<option>Hide</option>
+					<option>Chain Shirt</option>
+					<option>Scale Mail</option>
+					<option>Breastplate</option>
+					<option>Half Plate</option>
+					<option>Ring Mail</option>
+					<option>Chain Mail</option>
+					<option>Splint</option>
+					<option>Plate</option>
+				</select>
+			</label>
+		</h3>
+	</div>
+	<div class="col-md-2">
+		<h3>
+			<label>
+				<button id="RollTheDice">Roll the Dice</button>
+			</label>
+		</h3>
+	</div>
+	<div class = "col-md-1" id = "or">
+		<h3>       OR
+		</h3>
+	</div>
+	<div class = "col-md-3">
+		<h3>
+			<label>
+				<button id="KeepTheDice">Keep my Stats</button>	
+				<script src = "dnd2.js"></script>
+			</label>
+		<h3>
+	</div>
+	<div class = "col-md-12" id = "name"></div>
+	<div class = "col-md-7" id = "main"></div>
+	<div class = "col-md-5" id = "skills"></div>
+	<div class = "col-md-1" id = "column1">
+		<h4>
+			<label>Str<br>
+				<input type = "number" id="Strength" min = "3" max = "20" step = "1" value = "3"/>
+			</label>
+		</h4>
+		<h4>
+			<label>Dex<br>
+				<input type = "number" id="Dex" min = "3" max = "20" step = "1" value = "3"/>
+			</label>
+		</h4>
+		<h4>
+			<label>Con<br>
+				<input type = "number" id="Con" min = "3" max = "20" step = "1" value = "3"/>
+			</label>
+		</h4>
+		<h4>
+			<label>Int<br>
+				<input type = "number" id="Intel" min = "3" max = "20" step = "1" value = "3"/>
+			</label>
+		</h4>
+		<h4>
+			<label>Wis<br>
+				<input type = "number" id="Wis" min = "3" max = "20" step = "1" value = "3"/>
+			</label>
+		</h4>
+		<h4>
+			<label>Cha<br>
+				<input type = "number" id="Cha" min = "3" max = "20" step = "1" value = "3"/>
+			</label>
+
+		</h4>
+		<h4>
+			<label>HP<br>
+				<input type = "number" id="HP" min = "1" max = "200" step = "1" value = "1"/>
+			</label>
+		</h4>
+	</div>
+	<div class = "col-md-3" id = "column2"></div>
+	<div class = "col-md-2" id = "column3"></div>
+	<div class = "col-md-2" id = "column4"></div>
+	<div class = "col-md-2" id = "column5"></div>
+	<div class = "col-md-12" id = "level1"></div>
+	<div class = "col-md-12" id = "level2"></div>
+	<div class = "col-md-12" id = "level3"></div>
+	<div class = "col-md-12" id = "level7"></div>
+	<div class = "col-md-12" id = "level11"></div>
+	<div class = "col-md-12" id = "level15"></div>
+	<div class = "col-md-12" id = "level5"></div>
+	<div class = "col-md-12" id = "level8"></div>
+	<div class = "col-md-12" id = "level10"></div>
+	<div class = "col-md-12" id = "level14"></div>	
+	<div class = "col-md-12" id = "level18"></div>	
+	<div class = "col-md-12" id = "level20"></div>	
+	<div class = "col-md-12"><h3>Feats</h3></div>
+	<div class = "col-md-12" id = "feat1"></div>
+	<div class = "col-md-12" id = "feat2"></div>
+	<div class = "col-md-12" id = "feat3"></div>
+	<div class = "col-md-12" id = "feat4"></div>
+	<div class = "col-md-12" id = "feat5"></div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+	</script>
+	<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>
